@@ -1,0 +1,20 @@
+[Unit]
+Description = Backend Service
+
+[Service]
+User=expense
+Environment=DB_HOST="<MYSQL-SERVER-IPADDRESS>"
+ExecStart=/bin/node /app/index.js
+SyslogIdentifier=backend
+
+[Install]
+WantedBy=multi-user.target
+
+cp backend.service /etc/systemd/system/backend.service
+systemctl daemon-reload
+
+systemctl enable backend
+systemctl restart backend
+
+dnf install mysql -y
+mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql
