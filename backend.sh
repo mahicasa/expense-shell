@@ -1,11 +1,11 @@
 echo Disable the default version of NodeJS
-dnf module disable nodejs -y
+dnf module disable nodejs -y >/tmp/expense.log
 
 echo module enable nodejs18 version
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y >/tmp/expense.log
 
 echo install NodeJS
-dnf install nodejs -y
+dnf install nodejs -y >/tmp/expense.log
 
 echo configure the backend service
 cp backend.service /etc/systemd/system/backend.service
