@@ -1,3 +1,7 @@
+MYSQL_PASSWORD=$1
+
+component=backend
+
 source common.sh
 
 Head "Disable the default version of NodeJS"
@@ -20,22 +24,7 @@ Head "creating application useradd"
 useradd expense
 echo $?
 
-Head "remove the existing app content"
-rm -rf /app
-echo $?
-
-Head "create new app directory"
-mkdir /app
-echo $?
-
-Head "download the application content"
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>$log_file
-cd /app
-echo $?
-
-Head "extracting application content"
-unzip /tmp/backend.zip &>>$log_file
-echo $?
+App_Prereq "/app"
 
 Head "downloading the application dependencies"
 npm install &>>$log_file

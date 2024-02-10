@@ -1,3 +1,5 @@
+component=frontend
+
 source common.sh
 
 Head "Install Nginx"
@@ -8,24 +10,9 @@ Head "Copy config"
 cp expense.conf /etc/nginx/default.d/expense.conf &>>$log_file
 echo $?
 
-Head "Remove the default content that web server is serving"
-rm -rf /usr/share/nginx/html/* &>>$log_file
-echo $?
+App_Prereq "/usr/share/nginx/html"
 
-Head "Download the frontend content"
-curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/frontend.zip &>>$log_file
-echo $?
-
-Head "Extract the frontend content"
-cd /usr/share/nginx/html &>>$log_file
-echo $?
-
-unzip /tmp/frontend.zip
-
-Head "Enable nginx"
+Head "Start nginx service"
 systemctl enable nginx &>>$log_file
-echo $?
-
-Head "Restart nginx"
 systemctl restart nginx &>>$log_file
 echo $?
