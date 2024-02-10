@@ -2,7 +2,7 @@ MYSQL_PASSWORD=$1
 log_file=/tmp/expense.log
 
 Head() {
-  Head " -e "\e[36m$1\e[0m"
+  echo " -e "\e[36m$1\e[0m"
 }
 
 Head "Disable the default version of NodeJS"
@@ -42,7 +42,10 @@ systemctl daemon-reload &>>$log_file
 systemctl enable backend &>>$log_file
 systemctl restart backend &>>$log_file
 
-Head "install the MYSQL server"
+Head "Install MySQL Client"
 dnf install mysql -y &>>$log_file
+
+Head "Load Schema"
 mysql -h mysql-dev.rdevopsb73.online -uroot -p${MYSQL_PASSWORD} < /app/schema/backend.sql &>>$log_file
+
 # mysql -h mysql-dev.mahicasa.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
