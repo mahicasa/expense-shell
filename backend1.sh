@@ -23,20 +23,20 @@ echo create new app directory
 mkdir /app
 
 echo download the application content
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip  &>>$log_file
+curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/backend.zip &>>$log_file
 cd /app
 
 echo extracting application content
-unzip /tmp/backend.zip  &>>$log_file
+unzip /tmp/backend.zip &>>$log_file
 
 echo downloading the application dependencies
-npm install  &>>$log_file
+npm install &>>$log_file
 
 
 echo reloading the SystemD and Start Backend Service
-systemctl daemon-reload  &>>$log_file
-systemctl enable backend  &>>$log_file
-systemctl restart backend  &>>$log_file
+systemctl daemon-reload &>>$log_file
+systemctl enable backend &>>$log_file
+systemctl restart backend &>>$log_file
 
 echo install the MYSQL server
 dnf install mysql -y &>>$log_file
