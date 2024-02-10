@@ -39,6 +39,6 @@ systemctl enable backend  &>>$log_file
 systemctl restart backend  &>>$log_file
 
 echo install the MYSQL server
-dnf install mysql -y  &>>$log_file
+dnf install mysql -y &>>$log_file
 mysql -h mysql-dev.rdevopsb73.online -uroot -p${MYSQL_PASSWORD} < /app/schema/backend.sql &>>$log_file
 # mysql -h mysql-dev.mahicasa.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
