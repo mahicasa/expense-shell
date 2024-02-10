@@ -1,9 +1,4 @@
-MYSQL_PASSWORD=$1
-log_file=/tmp/expense.log
-
-Head() {
-  echo -e "\e[36m$1\e[0m"
-}
+soure common.sh
 
 Head "Disable the default version of NodeJS"
 dnf module disable nodejs -y &>>$log_file
