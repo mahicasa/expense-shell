@@ -1,3 +1,5 @@
+MYSQL_PASSWORD=$1
+
 echo Disable the default version of NodeJS
 dnf module disable nodejs -y >/tmp/expense.log
 
@@ -37,4 +39,6 @@ systemctl restart backend
 
 echo install the MYSQL server
 dnf install mysql -y
-mysql -h mysql-dev.mahicasa.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h mysql-dev.rdevopsb73.online -uroot -p${MYSQL_PASSWORD} < /app/schema/backend.sql &>>$log_file
+
+#mysql -h mysql-dev.mahicasa.online -uroot -pExpenseApp@1 < /app/schema/backend.sql
