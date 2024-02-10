@@ -7,6 +7,7 @@ Head() {
 
 Head "Disable the default version of NodeJS"
 dnf module disable nodejs -y &>>$log_file
+echo $?
 
 Head "module enable nodejs18 version"
 dnf module enable nodejs:18 -y &>>$log_file
