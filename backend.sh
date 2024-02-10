@@ -1,4 +1,4 @@
-soure common.sh
+source common.sh
 
 Head "Disable the default version of NodeJS"
 dnf module disable nodejs -y &>>$log_file
