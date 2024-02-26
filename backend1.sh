@@ -1,4 +1,8 @@
 MYSQL_PASSWORD=$1
+if [ -z "$MYSQL_PASSWORD" ]; then
+  echo Input MYSQL_PASSWORD is missing
+  exit 1
+fi
 log_file=/tmp/expense.log
 
 echo Disable the default version of NodeJS
