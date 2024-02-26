@@ -21,7 +21,10 @@ cp backend.service /etc/systemd/system/backend.service
 Stat $?
 
 Head "creating application useradd"
-useradd expense
+id expense &>>$log_file
+if [ "$?" -ne 0 ]; then
+  useradd expense &>>$log_file
+fi
 Stat $?
 
 App_Prereq "/app"
